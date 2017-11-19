@@ -1,9 +1,21 @@
+function cdi3 {
+    cd $HOME/.i3/$1
+}
+
 function cdg {
     cd $GHUB/$1
 }
 
 function cdgm {
     cd $GHUBM/$1
+}
+
+function cdcf {
+    cd $CFG/$1
+}
+
+function cdci3 {
+    cdcf "i3-configs/$1"
 }
 
 function cdpk {
