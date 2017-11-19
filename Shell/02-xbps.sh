@@ -3,7 +3,7 @@ function xbi {
 }
 
 function xbs {
-    sudo xbps-query -s "$@"
+    sudo xbps-query -Rs "$@"
 }
 
 function update {

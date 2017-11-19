@@ -13,5 +13,5 @@ function xbr {
 }
 
 function xbs {
-    xbps-query -s "$@"
+    xbps-query -Rs "$@"
 }
