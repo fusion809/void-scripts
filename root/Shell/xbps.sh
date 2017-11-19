@@ -1,13 +1,13 @@
 function xbi {
-    xbps-install "$@"
+    xbps-install -y "$@"
 }
 
 function update {
-    xbps-install -Su "$@"
+    xbps-install -Su -y "$@"
 }
 
 function xbr {
-    xbps-remove "$@"
+    xbps-remove -y "$@"
 }
 
 function xbs {
