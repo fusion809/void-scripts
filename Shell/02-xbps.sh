@@ -1,5 +1,5 @@
 function xbi {
-    sudo xbps-install "$@"
+    sudo xbps-install -y "$@"
 }
 
 function xbs {
@@ -7,9 +7,9 @@ function xbs {
 }
 
 function update {
-    sudo xbps-install -Su "$@"
+    sudo xbps-install -Su -y "$@"
 }
 
 function xbr {
-    sudo xbps-remove "$@"
+    sudo xbps-remove -y "$@"
 }
