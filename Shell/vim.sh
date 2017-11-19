@@ -3,3 +3,7 @@ function vsh {
     vim
     popd
 }
+
+function vrc {
+    vim $HOME/.vimrc
+}
