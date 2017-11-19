@@ -2,6 +2,10 @@ function cdi3 {
     cd $HOME/.i3/$1
 }
 
+function cdps {
+    cd $HOME/Pictures/Screenshots
+}
+
 function cdg {
     cd $GHUB/$1
 }
