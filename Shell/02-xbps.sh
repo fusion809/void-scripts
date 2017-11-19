@@ -10,6 +10,8 @@ function update {
     sudo xbps-install -Su -y "$@"
 }
 
+alias xbup=update
+
 function xbr {
     sudo xbps-remove -y "$@"
 }

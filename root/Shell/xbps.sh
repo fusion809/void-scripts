@@ -6,6 +6,8 @@ function update {
     xbps-install -Su -y "$@"
 }
 
+alias xbup=update
+
 function xbr {
     xbps-remove -y "$@"
 }
