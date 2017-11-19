@@ -7,6 +7,7 @@ function update {
 }
 
 alias xbup=update
+alias xbu=update
 
 function xbr {
     xbps-remove -y "$@"

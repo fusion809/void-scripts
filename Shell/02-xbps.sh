@@ -11,6 +11,7 @@ function update {
 }
 
 alias xbup=update
+alias xbu=update
 
 function xbr {
     sudo xbps-remove -y "$@"
