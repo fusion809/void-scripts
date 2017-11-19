@@ -37,3 +37,7 @@ function cdvs {
 function cdgo {
     cd $GHUBO/$1
 }
+
+function cdfgi {
+    cd $FGI/$1
+}
