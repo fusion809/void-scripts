@@ -1,5 +1,9 @@
+function cdm {
+    cd $HOME/Music/$1
+}
+
 function cdps {
-    cd $HOME/Pictures/Screenshots
+    cd $HOME/Pictures/Screenshots/$1
 }
 
 function cdp {
