@@ -41,3 +41,25 @@ function cdgo {
 function cdfgi {
     cd $FGI/$1
 }
+
+function cdls {
+    cd $HOME/.local/share/$1
+}
+
+function cdlsa {
+    cdls "applications/$1"
+}
+
+alias cdap=cdlsa
+
+function cdlsi {
+    cdls "icons/$1"
+}
+
+function cdlsw {
+    cdls "wallpapers/$1"
+}
+
+function cdp {
+    cd $HOME/Programs/$1
+}
