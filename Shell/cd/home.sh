@@ -10,6 +10,10 @@ function cdp {
     cd $HOME/Programs/$1
 }
 
+function cdsh {
+    cd $HOME/Shell/$1
+}
+
 function cdv {
     cd $HOME/Videos/$1
 }

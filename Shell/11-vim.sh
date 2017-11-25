@@ -1,3 +1,7 @@
+function ved {
+    vim *.ebuild
+}
+
 function vsh {
     pushd $HOME/Shell
     vim
