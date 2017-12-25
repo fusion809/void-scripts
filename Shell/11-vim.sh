@@ -3,7 +3,7 @@ function ved {
 }
 
 function vfs {
-    vim /etc/fstab
+    sudo vim /etc/fstab
 }
 
 function vsh {
