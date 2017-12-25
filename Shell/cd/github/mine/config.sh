@@ -3,5 +3,5 @@ function cdcf {
 }
 
 function cdci3 {
-    cdcf "i3-configs/$1"
+    cd "$HOME/i3-configs/$1"
 }
