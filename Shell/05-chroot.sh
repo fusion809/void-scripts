@@ -1,19 +1,3 @@
-# Chroot into my Arch Linux partition
-function aroot {
-    sudo arch-chroot /arch /bin/zsh
-}
-
-# Chroot into my Gentoo Linux partition
-function groot {
-    sudo mount -t proc none /gentoo/proc
-    sudo mount --rbind /dev /gentoo/dev
-    sudo mount --make-rslave /gentoo/dev
-    sudo mount --rbind /sys /gentoo/sys
-    sudo mount --make-rslave /gentoo/sys
-    sudo cp -L /etc/resolv.conf /gentoo/etc
-    sudo chroot /gentoo /bin/zsh
-}
-
 function genroot {
     if [[ -d $1/root/dev ]]; then
          root="$1/root"
@@ -33,23 +17,29 @@ function genroot {
          sudo cp -L /etc/resolv.conf "$root/etc"
     fi
 
+    if [[ -f $root/bin/env ]]; then
+         ENV=$root/bin/env
+    elif [[ -f $root/usr/bin/env ]]; then
+         ENV=$root/usr/bin/env
+    fi
+
     if [[ -f $root/usr/local/bin/su-fusion809 ]]; then
          sudo chroot "$root" /usr/local/bin/su-fusion809
     elif [[ -f $root/bin/zsh ]]; then
-         sudo chroot "$root" /bin/env -i \
+         sudo chroot "$root" $ENV -i     \
                HOME="/root"              \
                TERM="$TERM"              \
                PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin \
                /bin/zsh --login +h
     elif [[ -f $root/bin/bash ]]; then
-         sudo chroot "$root" /bin/env -i \
+         sudo chroot "$root" $ENV -i     \
                HOME="/root"              \
                TERM="$TERM"              \
                PS1='\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \['            \
                PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin \
                /bin/bash --login +h
-    elif [[ -f $root/bin/sh ]] && [[ -f $root/bin/env ]]; then
-         sudo chroot "$root" /bin/env -i \
+    elif [[ -f $root/bin/sh ]] && [[ -n $ENV ]]; then
+         sudo chroot "$root" $ENV -i     \
                HOME="/root"              \
                TERM="$TERM"              \
                PS1='\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \['            \
@@ -64,4 +54,12 @@ function genroot {
     if [[ -f $root/usr/bin/dnf ]]; then
          sudo touch "$root/.autorelabel"
     fi
+}
+
+function groot {
+    genroot /gentoo
+}
+
+function aroot {
+    genroot /arch
 }
