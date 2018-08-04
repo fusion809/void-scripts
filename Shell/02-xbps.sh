@@ -32,5 +32,5 @@ function xbar {
 }
 
 function makepkg {
-    cdvp ; ./xbps-src pkg ${PWD##*/} ; cd -
+    pkg=${PWD##*/} ; cdvp ; ./xbps-src pkg $pkg ; cd -
 }
