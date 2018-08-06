@@ -30,7 +30,3 @@ function orp {
 function xbar {
     xbr $(orp)
 }
-
-function makepkg {
-    pkg=${PWD##*/} ; cdvp ; ./xbps-src pkg $pkg ; cd -
-}

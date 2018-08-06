@@ -1,0 +1,37 @@
+#!/bin/bash
+if ! cat /etc/os-release | grep -i void > /dev/null 2>&1 ; then
+    exit
+fi
+
+export VP=/data/GitHub/mine/packaging/void-packages
+
+git-branch () {
+    git rev-parse --abbrev-ref HEAD
+}
+
+if [[ "$1" == "-i" ]]; then
+    if [[ -n "$2" ]]; then
+         pkg="$2"
+    elif [[ -f template ]]; then
+         pkg="${PWD##*/}"
+    else
+         printf "Not sure what you want me to do mate, there's no input given and no template file in $PWD.\n"
+    fi
+elif [[ -n "$1" ]]; then
+    pkg="${1}"
+elif [[ -f template ]]; then
+    pkg="${PWD##*/}"
+else
+    printf "Not sure what you want me to do mate, there's no input given and no template file in $PWD.\n"
+fi
+
+printf "Changing directory to $VP, then running ./xbps-src pkg $pkg, then changing directory to $VP/srcpkgs/$pkg.\n"
+cd $VP || exit
+./xbps-src clean
+./xbps-src -f pkg $pkg || exit
+cd "$VP/srcpkgs/$pkg" || exit
+
+if [[ "$1" == "-i" ]]; then
+    printf "Installing $pkg from $VP/hostdir/binpkgs/$(git-branch).\n"
+    xi $pkg -f -y
+fi
