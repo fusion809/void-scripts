@@ -1,5 +1,5 @@
 function xbi {
-    sudo xbps-install -y "$@"
+    sudo xbps-install -y "$@" || xi -f -y "$@"
 }
 
 function xbs {
