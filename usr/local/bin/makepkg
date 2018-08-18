@@ -3,8 +3,6 @@ if ! cat /etc/os-release | grep -i void > /dev/null 2>&1 ; then
     exit
 fi
 
-export VP=/data/GitHub/mine/packaging/void-packages
-
 git-branch () {
     git rev-parse --abbrev-ref HEAD
 }
@@ -23,6 +21,14 @@ elif [[ -f template ]]; then
     pkg="${PWD##*/}"
 else
     printf "Not sure what you want me to do mate, there's no input given and no template file in $PWD.\n"
+fi
+
+if echo $PWD | grep bleed > /dev/null 2>&1 ; then
+	export VP=/data/GitHub/mine/packaging/void-packages-bleed
+elif echo "$pkg" | grep "openra-bleed" > /dev/null 2>&1; then
+	export VP=/data/GitHub/mine/packaging/void-packages-bleed
+else
+	export VP=/data/GitHub/mine/packaging/void-packages
 fi
 
 printf "Changing directory to $VP, then running ./xbps-src pkg $pkg, then changing directory to $VP/srcpkgs/$pkg.\n"
