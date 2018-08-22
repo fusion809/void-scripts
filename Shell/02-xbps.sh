@@ -51,12 +51,12 @@ ORATV=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "versio
 COMT=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "commit=" | cut -d '=' -f 2)
 
 if ( ! [[ $ORAIV == "bleed-$ORATV" ]] ) || ( ! [[ -f /tmp/openra-update-lock ]] ) ; then
-	vared -p "You may wish to rebuild OpenRA as an update is available. Would you like to do that now?\n" -c yn
+	vared -p "You may wish to rebuild OpenRA as an update is available. Would you like to do that now?" -c yn
 	case $yn in
 		[yY]*)
 			obup $ORATV $COMT;;
 		[nN]*)
-			vared -p "OK, would you like to be re-asked when Zsh is re-started?\n" -c yn2
+			vared -p "OK, would you like to be re-asked when Zsh is re-started?" -c yn2
 			case $yn2 in
 				[nN]*)
 					touch /tmp/openra-update
