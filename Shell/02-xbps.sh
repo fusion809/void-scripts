@@ -46,9 +46,13 @@ function obup {
 }
 
 # OpenRA installed version
-ORAIV=$(cat /usr/lib/openra/VERSION)
-ORATV=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "version=" | cut -d '=' -f 2)
-COMT=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "commit=" | cut -d '=' -f 2)
+if [[ -d /usr/lib/openra ]] ; then
+	ORAIV=$(cat /usr/lib/openra/VERSION)
+	if [[ -d $PK/void-packages-bleed/srcpkgs/openra-bleed ]]; then
+		ORATV=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "version=" | cut -d '=' -f 2)
+		COMT=$(cat $PK/void-packages-bleed/srcpkgs/openra-bleed/template | grep "commit=" | cut -d '=' -f 2)
+	fi
+fi
 
 #if ( ! [[ $ORAIV == "bleed-$ORATV" ]] ) || ( ! [[ -f /tmp/openra-update-lock ]] ) ; then
 #	vared -p "You may wish to rebuild OpenRA as an update is available. Would you like to do that now?" -c yn
